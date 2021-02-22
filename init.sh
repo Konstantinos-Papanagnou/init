@@ -31,11 +31,11 @@ echo " " >> README.md
 now=$(date)
 echo " > Konstantinos Pap - $now" >> README.md
 cp /opt/reverse_shells/misc.txt .
-cp /opt/reverse_shells/init/reverse.php .
+cp /opt/reverse_shells/reverse.php .
 ip=$(ip addr show | grep tun0 | grep -o "inet [0-9]*\.[0-9]*\.[0-9]*\.[0-9]*" | grep -o "[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*")
 echo "Your vpn ip is: $ip"
 
-sed -i "s/{UPDATE}/$ip/" reverse.php
+sed -i "s/{ip}/$ip/" reverse.php
 sed -i "s/{ip}/$ip/" misc.txt
 
 echo 'Everything is set up'
