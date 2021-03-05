@@ -7,6 +7,6 @@ echo Copying reverse shells into /opt/reverse_shells/
 cp -r reverse_shells/ /opt/reverse_shells/
 
 echo Creating symlink for init.sh
-ln -s init.sh /sbin/initWorkspace
+ln -s $(pwd)/init.sh /sbin/initWorkspace
 
 echo Everything\'s setup! Simply run initWorkspace to get started!
