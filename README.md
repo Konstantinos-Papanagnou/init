@@ -2,7 +2,7 @@
  init script to setup basic files and folders and begin basic enumeration on ctf machines
 
 ## Installation:
-#### In case you want it to exist on your path (aka. install it) you can simply run: `chmod +x setup.sh` and `./setup.sh`
+#### In case you want it to exist on your path (aka. install it) you can simply run: `chmod +x setup.sh` and `sudo ./setup.sh`
 Note: The reverse_shells need to be in /opt/reverse_shells. The setup will automatically copy them to the correct location. 
 If you don't want to run setup you need to run `sudo cp -r /installation_path/reverse_shells/ /opt/reverse_shells/`
  
