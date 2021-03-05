@@ -39,7 +39,7 @@ sed -i "s/{ip}/$ip/" reverse.php
 sed -i "s/{ip}/$ip/" misc.txt
 
 echo 'Everything is set up'
-echo "Your gobuster syntax is: gobuster dir -x php,html,sh,bin.txt -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://$2 | tee gobuster.log"
+echo "Your gobuster syntax is: gobuster dir -x php,html,sh,bin,txt -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://$2 | tee gobuster.log"
 echo "Nikto syntax: nikto --url http://$2 |tee nikto.log"
 echo;echo;echo
 echo "Initializing nmap scan"
