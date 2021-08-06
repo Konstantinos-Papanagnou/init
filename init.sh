@@ -13,8 +13,10 @@ if [ -z $2 ]
     exit
 fi
 
+echo "Adding /etc/hosts entry"
+echo $ip $machine_name.htb | sudo tee -a /etc/hosts
 
-cd ~/Documents
+#cd ~/Documents
 
 echo 'Creating folders...'
 mkdir -p $1/nmap
@@ -39,13 +41,19 @@ sed -i "s/{ip}/$ip/" reverse.php
 sed -i "s/{ip}/$ip/" misc.txt
 
 echo 'Everything is set up'
+
 echo "Your gobuster syntax is: gobuster dir -x php,html,sh,bin,txt -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://$2 | tee gobuster.log"
+echo "Executing gobuster... Results saved at gobuster.log"
+xterm -e bash -c "gobuster dir -x php,html,sh,bin,txt -w/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://$2 --wildcard | tee gobuster.log" &
+
 echo "Nikto syntax: nikto --url http://$2 |tee nikto.log"
+echo "Executing nikto... Results saved at nikto.log"
+xterm -e bash -c "nikto --url http://$2 | tee nikto.log" &
 echo;echo;echo
 echo "Initializing nmap scan"
 
 sudo nmap -sS -sV -sC -vvv -oN nmap/initial $2
-pluma README.md creds nmap/initial &
+subl README.md creds nmap/initial &
 
 echo;echo;echo;echo
 echo "Initializing all port scan"
@@ -53,4 +61,4 @@ echo "Initializing all port scan"
 sudo nmap -sS -sV -sC -p- -oN nmap/allports $2
 
 echo "You can view the complete results of all port scan in nmap/allports"
-pluma nmap/allports &
+subl nmap/allports &
