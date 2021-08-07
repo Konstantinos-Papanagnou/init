@@ -1,20 +1,25 @@
 #!/bin/bash
 
-#Check for 3 arguments and require them
-echo "          ____     _ __       ___      "
-echo "         /  _/__  (_) /_     / _ )__ __"
-echo "        _/ // _ \/ / __/    / _  / // /"
-echo "       /___/_//_/_/\__/    /____/\_, / "
-echo "                                /___/  "
+# print nice banner
+
+RED='\033[0;31m'
+GREEN='\u001b[32;1m'
+RESET='\033[0m'
+BLINK='\033[33;5m'
+echo -e "      ${RED}          ____     _ __       ___      "
+echo "               /  _/__  (_) /_     / _ )__ __"
+echo "              _/ // _ \/ / __/    / _  / // /"
+echo "             /___/_//_/_/\__/    /____/\_, / "
+echo "                                       /___/  "
 echo;echo;echo;
-echo "     _ _ ___ _     _   ____          _ _  _    __      "
+echo -e "${BLINK}${GREEN}     _ _ ___ _     _   ____          _ _  _    __      "
 echo "  __| / | __/ |_ _| |_|__ / __ _ _ _| | || |_ /  \ _ _ "
 echo " / _\` | |__ \ | ' \  _||_ \/ _\` | '_|_  _|  _| () | '_|"
 echo " \__,_|_|___/_|_||_\__|___/\__, |_|   |_| \__|\__/|_|  "
-echo "                           |___/                       "               
+echo -e "                           |___/                       ${RESET}"               
         
                                                                                                       
-
+#Check for 3 arguments and require them
 export machine_name=$1
 export ip=$2
 export ext=$3
