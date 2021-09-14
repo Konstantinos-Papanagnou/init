@@ -31,3 +31,8 @@ initmanualWorkspace <machine name> <ip> [extention thm,htb,local whatever applie
 
 
 # This script is still under developement 
+## To-Do
+##### SMB Enumeration and file fetching
+##### NFS Enumeration and automount
+##### SMTP User Enumeration
+##### Web Service OWASP TOP TEN Enumeration
