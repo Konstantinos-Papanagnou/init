@@ -1,22 +1,33 @@
-# init
- init script to setup basic files and folders and begin basic enumeration on ctf machines
+# Old init
+ init script to setup basic files and folders and begin automated enumeration on ctf machines
+## Manual Enumeration only provided
+
+# New init
+## Automated the whole process of enumeration. FTP enumeration and anonymous login and automatically fetching the entire ftp folder recursively.
+## Real time results as nmap scans.
+## Auto enumeration on web servers.
+## Auto enumeration on port services.
+## Auto enumeration on unknown services.
+
 
 ## Installation:
-#### In case you want it to exist on your path (aka. install it) you can simply run: `chmod +x setup.sh` and `sudo ./setup.sh`
-Note: The reverse_shells need to be in /opt/reverse_shells. The setup will automatically copy them to the correct location. 
-If you don't want to run setup you need to run `sudo cp -r /installation_path/reverse_shells/ /opt/reverse_shells/`
- 
-## Basic Usage:
-./init {machine_name} {ip}
+#### This tool now requires installation. No Additional Libraries needed. To install:
+```bash
+chmod +x setup.sh
+sudo ./setup.sh
+```
+#### It's really that Simple!
 
-## Requirements:
-	The reverse scripts are now shipped alongside with the script so it's not required to download them and create them yourself.
-	
-	In misc.txt & reverse.php the ip should be {ip} for the script to automatically change it with your ip
-	Feel free to modify the scripts to your needs
-	
-	This script also uses pluma text editor to open files. If you don't have pluma installed or your system and don't want to install it you can change the text editor.
-	for example if you want sublime just replace pluma with sublime
-	
+## Basic Usage:
+### For the new automated script: 
+```bash
+initWorkspace <machine name> <ip> [extention thm,htb,local whatever applies.]
+```
+
+### For the old manual script:
+```bash
+initmanualWorkspace <machine name> <ip> [extention thm,htb,local whatever applies.]
+```
+
 
 # This script is still under developement 
