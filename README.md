@@ -1,13 +1,13 @@
 # Old init
  init script to setup basic files and folders and begin automated enumeration on ctf machines
-## Manual Enumeration only provided
+##### Manual Enumeration only provided
 
 # New init
-## Automated the whole process of enumeration. FTP enumeration and anonymous login and automatically fetching the entire ftp folder recursively.
-## Real time results as nmap scans.
-## Auto enumeration on web servers.
-## Auto enumeration on port services.
-## Auto enumeration on unknown services.
+#### Automated the whole process of enumeration. FTP enumeration and anonymous login and automatically fetching the entire ftp folder recursively.
+#### Real time results as nmap scans.
+#### Auto enumeration on web servers.
+#### Auto enumeration on port services.
+#### Auto enumeration on unknown services.
 
 
 ## Installation:
