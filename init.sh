@@ -119,7 +119,7 @@ else
 fi
 
 echo -e "${YELLOW}[*] Finding alive ports using nmap...${RESET}"
-nohup nmap $pn -p- -T4 $machine_name.$ext | tee nmap/ports 1>/dev/null & 
+nohup nmap $pn -p- -T4 -v $machine_name.$ext | tee nmap/ports 1>/dev/null & 
 sudo nohup nmap $pn -O $ip | tee nmap/os.detection 1>/dev/null &
 osdone=0
 portscandone=0
@@ -130,7 +130,7 @@ while [ 1 ]; do
       if [ `cat nmap/ports | grep done -c` -gt 0 ]; then
         portscandone=1
       fi
-      ports=`cat nmap/ports | grep open | cut -d "/" -f1`
+      ports=`cat nmap/ports | grep open | cut -d "/" -f1 | cut -d ' ' -f4 2>/dev/null`
       for port in $ports; do
         if [[ " ${knownports[*]} " =~ " ${port} " ]]; then
           continue;
