@@ -127,7 +127,7 @@ knownports=()
 while [ 1 ]; do
   if [ $portscandone = 0 ]; then
     if [ -f nmap/ports ]; then
-      if [ `cat nmap/ports | grep done -c` -gt 0 ]; then
+      if [ `cat nmap/ports | grep "Nmap done:" -c` -gt 0 ]; then
         portscandone=1
       fi
       ports=`cat nmap/ports | grep open | cut -d "/" -f1 | cut -d ' ' -f4 2>/dev/null`
