@@ -119,7 +119,7 @@ else
 fi
 
 echo -e "${YELLOW}[*] Finding alive ports using nmap...${RESET}"
-nohup nmap $pn -p- -T4 -v $machine_name.$ext | tee nmap/ports 1>/dev/null & 
+nohup nmap $pn -v -p- -T4 $machine_name.$ext | tee nmap/ports 1>/dev/null & 
 sudo nohup nmap $pn -O $ip | tee nmap/os.detection 1>/dev/null &
 osdone=0
 portscandone=0
@@ -179,7 +179,8 @@ while [ 1 ]; do
           echo;
 
           echo -e "[*] Checking for robots.txt entries.${RESET}"
-          res=`curl $machine_name.$ext:$port/robots.txt 2>/dev/null | grep "Error code: 404" -c`
+          curl -D web/robot.headers.$port $machine_name.$ext:$port/robots.txt 2>/dev/null 1>/dev/null
+          res=`head -n 1 web/robot.headers.$port | grep 404 -c`
           if [ $res -gt 0 ]; then
             echo -e "${RED}[-] robots.txt not found${RESET}"
           else
@@ -190,7 +191,8 @@ while [ 1 ]; do
           fi
           echo;
           echo -e "${YELLOW}[*] Checking for .well-known entries.${RESET}"
-          res=`curl $machine_name.$ext:$port/.well-known/security.txt 2>/dev/null | grep "Error code: 404" -c`
+          curl -D web/security.headers.$port $machine_name.$ext:$port/.well-known/security.txt 2>/dev/null 1>/dev/null
+          res=`head -n 1 web/security.headers.$port | grep 404 -c`
           if [ $res -gt 0 ]; then
             echo -e "${RED}[-] security.txt not found${RESET}"
           else
