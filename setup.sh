@@ -1,5 +1,8 @@
 #!/bin/bash
 
+apt update
+apt install xterm
+
 echo Making init.sh executable...
 chmod +x init.sh
 
